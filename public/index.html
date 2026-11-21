@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLASH: Cyber Arena | Node + React + Python</title>
+  <meta name="description" content="A futuristic cyber duel card game built with Node.js, React, Python AI, HTML5, CSS3, and JavaScript.">
+  <link rel="stylesheet" href="/style.css">
+  <!-- React 18 & ReactDOM 18 CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Procedural Web Audio Engine -->
+  <script src="/audio.js"></script>
+</head>
+<body>
+  <!-- Ambient background canvas for floating cyber dust -->
+  <canvas id="ambient-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+  <!-- React Root Container -->
+  <div id="root" style="position:relative; z-index:1;"></div>
+
+  <!-- Background Canvas Particle Animation Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('ambient-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const particles = Array.from({ length: 45 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4 - 0.2,
+        size: Math.random() * 2 + 1,
+        alpha: Math.random() * 0.6 + 0.1
+      }));
+
+      function render() {
+        ctx.clearRect(0, 0, w, h);
+        for (let p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+
+          ctx.fillStyle = `rgba(0, 240, 255, ${p.alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+
+  <!-- React Game Application Script -->
+  <script src="/app.js"></script>
+</body>
+</html>

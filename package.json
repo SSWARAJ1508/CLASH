@@ -1,0 +1,24 @@
+{
+  "name": "clash-cyber-arena",
+  "version": "1.0.0",
+  "description": "Tactical cyber duel game built with Node.js, React, Python AI, HTML5, CSS3, and JavaScript",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "bash start.sh",
+    "server": "node server/server.js",
+    "ai": "python3 ai_service/ai_engine.py",
+    "test": "python3 ai_service/test_ai.py"
+  },
+  "keywords": [
+    "game",
+    "react",
+    "node",
+    "python",
+    "html",
+    "css",
+    "javascript",
+    "cyberpunk"
+  ],
+  "author": "",
+  "license": "MIT"
+}
