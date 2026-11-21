@@ -88,3 +88,4 @@ To run the Python AI engine unit tests:
 ```bash
 npm test
 ```
+# Testing CI automation
